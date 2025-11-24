@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmavqeategf0r"]
+[gd_scene load_steps=20 format=3 uid="uid://cmavqeategf0r"]
 
 [ext_resource type="Script" uid="uid://dvhdklhchodhp" path="res://generador_dungeon.gd" id="1_4pr7c"]
 [ext_resource type="Texture2D" uid="uid://d3tu33kosnt2h" path="res://crawl-tiles Oct-5-2010/dc-dngn/floor/pebble_brown0.png" id="2_p1q8q"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cv70k7877sro1" path="res://player.gd" id="3_4jx0k"]
 [ext_resource type="Texture2D" uid="uid://6ebqf8asfqt" path="res://crawl-tiles Oct-5-2010/dc-dngn/wall/stone_dark3.png" id="3_pdp17"]
 [ext_resource type="Texture2D" uid="uid://bur1u2xp8ilwc" path="res://crawl-tiles Oct-5-2010/dc-mon/dwarf.png" id="6_pdp17"]
+[ext_resource type="Texture2D" uid="uid://by062nh5pfdil" path="res://male_sprites.png" id="7_0ft82"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ft82"]
 texture = ExtResource("2_p1q8q")
@@ -29,6 +30,34 @@ sources/1 = SubResource("TileSetAtlasSource_rjosd")
 radius = 11.0
 height = 34.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjosd"]
+atlas = ExtResource("7_0ft82")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hthtw"]
+atlas = ExtResource("7_0ft82")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6ipt"]
+atlas = ExtResource("7_0ft82")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3x2tk"]
+atlas = ExtResource("7_0ft82")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqenb"]
+atlas = ExtResource("7_0ft82")
+region = Rect2(256, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3o2u"]
+atlas = ExtResource("7_0ft82")
+region = Rect2(320, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsyx5"]
+atlas = ExtResource("7_0ft82")
+region = Rect2(384, 128, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_pdp17"]
 animations = [{
 "frames": [],
@@ -36,7 +65,28 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjosd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hthtw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6ipt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3x2tk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqenb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3o2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsyx5")
+}],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
@@ -67,5 +117,7 @@ zoom = Vector2(2.5, 2.5)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_pdp17")
 animation = &"idle"
+frame = 4
+frame_progress = 0.7997666
 
 [node name="Chest" parent="." instance=ExtResource("2_pdp17")]
