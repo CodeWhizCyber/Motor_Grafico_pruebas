@@ -2,6 +2,8 @@ extends Node2D
  
 @export var tilemap : TileMapLayer
 @export var player : CharacterBody2D
+@export var chest_scene : PackedScene
+
  
 const DUNGEON_WIDTH = 80
 const DUNGEON_HEIGHT = 80
@@ -92,14 +94,14 @@ func add_walls():
 	for y in range(DUNGEON_HEIGHT):
 		for x in range(DUNGEON_WIDTH):
 			if dungeon_grid[y][x] == TileType.FLOOR:
-				for dy in range(-1, 2):
-					for dx in range(-1, 2):
-						var nx = x + dx
-						var ny = y + dy
-						if nx >= 0 and ny >= 0 and nx < DUNGEON_WIDTH and ny < DUNGEON_HEIGHT:
-							if dungeon_grid[ny][nx] == TileType.EMPTY:
-								dungeon_grid[ny][nx] = TileType.WALL
- 
+				for oy in range(-1, 2):
+					for ox in range(-1, 2):
+						var nx = x + ox
+						var ny = y + oy
+						if is_in_bounds(nx, ny):
+								if dungeon_grid[ny][nx] == TileType.EMPTY:
+									dungeon_grid[ny][nx] = TileType.WALL
+								
 func render_dungeon():
 	tilemap.clear()
 	for y in range(DUNGEON_HEIGHT):
@@ -110,9 +112,37 @@ func render_dungeon():
 				TileType.WALL: tilemap.set_cell(Vector2i(x, y), 1, Vector2i(0,0))
  
 func create_dungeon():
-	place_player(generate_dungeon())
+	var rooms = generate_dungeon()
 	add_walls()
 	render_dungeon()
+	place_player(rooms)
+	place_chests(rooms)
  
 func place_player(rooms : Array[Rect2]):
 	player.position = rooms.pick_random().get_center() * 32
+	
+func place_chests(rooms: Array[Rect2]):
+	for child in get_children():
+		if child.scene_file_path == chest_scene.resource_path:
+			child.queue_free()
+
+	for room in rooms:
+		var tries = 0
+		while tries < 30:
+			var x = randi_range(room.position.x + 2, room.position.x + room.size.x - 3)
+			var y = randi_range(room.position.y + 2, room.position.y + room.size.y - 3)
+
+			var in_room = (
+				x >= room.position.x and
+				x < room.position.x + room.size.x and
+				y >= room.position.y and
+				y < room.position.y + room.size.y
+			)
+
+			if in_room and dungeon_grid[y][x] == TileType.FLOOR:
+				var chest = chest_scene.instantiate()
+				chest.position = Vector2(x * 32, y * 32)
+				add_child(chest)
+				break
+
+			tries += 1

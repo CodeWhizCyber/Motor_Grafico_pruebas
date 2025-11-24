@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1euxlc0n8plt"]
+
+[ext_resource type="Texture2D" uid="uid://dcys6ycxd18to" path="res://crawl-tiles Oct-5-2010/UNUSED/other/chest.png" id="1_4gslm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5udua"]
+size = Vector2(32, 20)
+
+[node name="Chest" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4gslm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 4)
+shape = SubResource("RectangleShape2D_5udua")
