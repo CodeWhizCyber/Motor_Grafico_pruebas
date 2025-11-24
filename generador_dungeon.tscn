@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmavqeategf0r"]
+[gd_scene load_steps=12 format=3 uid="uid://cmavqeategf0r"]
 
 [ext_resource type="Script" uid="uid://dvhdklhchodhp" path="res://generador_dungeon.gd" id="1_4pr7c"]
 [ext_resource type="Texture2D" uid="uid://d3tu33kosnt2h" path="res://crawl-tiles Oct-5-2010/dc-dngn/floor/pebble_brown0.png" id="2_p1q8q"]
 [ext_resource type="PackedScene" uid="uid://b1euxlc0n8plt" path="res://Chest.tscn" id="2_pdp17"]
 [ext_resource type="Script" uid="uid://cv70k7877sro1" path="res://player.gd" id="3_4jx0k"]
 [ext_resource type="Texture2D" uid="uid://6ebqf8asfqt" path="res://crawl-tiles Oct-5-2010/dc-dngn/wall/stone_dark3.png" id="3_pdp17"]
-[ext_resource type="Texture2D" uid="uid://byegx0a3vvk4i" path="res://crawl-tiles Oct-5-2010/dc-mon/unique/donald.png" id="4_2ym11"]
+[ext_resource type="Texture2D" uid="uid://bur1u2xp8ilwc" path="res://crawl-tiles Oct-5-2010/dc-mon/dwarf.png" id="6_pdp17"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ft82"]
 texture = ExtResource("2_p1q8q")
@@ -29,6 +29,19 @@ sources/1 = SubResource("TileSetAtlasSource_rjosd")
 radius = 11.0
 height = 34.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_pdp17"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [node name="GeneradorDungeon" type="Node2D" node_paths=PackedStringArray("tilemap", "player")]
 script = ExtResource("1_4pr7c")
 tilemap = NodePath("TileMapLayer")
@@ -42,7 +55,7 @@ tile_set = SubResource("TileSet_p1q8q")
 script = ExtResource("3_4jx0k")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("4_2ym11")
+texture = ExtResource("6_pdp17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 2)
@@ -50,5 +63,9 @@ shape = SubResource("CapsuleShape2D_p1q8q")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2.5, 2.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_pdp17")
+animation = &"idle"
 
 [node name="Chest" parent="." instance=ExtResource("2_pdp17")]
