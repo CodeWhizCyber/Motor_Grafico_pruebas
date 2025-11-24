@@ -8,13 +8,14 @@
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ft82"]
 texture = ExtResource("2_p1q8q")
-1:0/0 = 0
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rjosd"]
 texture = ExtResource("3_pdp17")
-texture_region_size = Vector2i(32, 16)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16, -16, -16)
 
 [sub_resource type="TileSet" id="TileSet_p1q8q"]
 tile_size = Vector2i(32, 32)
@@ -43,4 +44,4 @@ texture = ExtResource("4_2ym11")
 shape = SubResource("CircleShape2D_4jx0k")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(3, 3)
+zoom = Vector2(2.5, 2.5)

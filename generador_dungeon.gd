@@ -106,8 +106,8 @@ func render_dungeon():
 		for x in range(DUNGEON_WIDTH):
 			var tile = dungeon_grid[y][x]
 			match tile:
-				TileType.FLOOR: tilemap.set_cell(Vector2i(x, y), 0, Vector2i(1,0))
-				TileType.WALL: tilemap.set_cell(Vector2i(x, y), 1, Vector2i(1,1))
+				TileType.FLOOR: tilemap.set_cell(Vector2i(x, y), 0, Vector2i(0,0))
+				TileType.WALL: tilemap.set_cell(Vector2i(x, y), 1, Vector2i(0,0))
  
 func create_dungeon():
 	place_player(generate_dungeon())
@@ -115,4 +115,4 @@ func create_dungeon():
 	render_dungeon()
  
 func place_player(rooms : Array[Rect2]):
-	player.position = rooms.pick_random().get_center() * 16
+	player.position = rooms.pick_random().get_center() * 32
