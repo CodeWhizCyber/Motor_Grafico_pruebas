@@ -18,3 +18,8 @@ func _physics_process(delta: float) -> void:
 	velocity = dir * speed
 
 	move_and_slide()
+
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+
+func _ready() -> void:
+	anim.play("idle")
